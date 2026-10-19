@@ -1,0 +1,16 @@
+README.md
+pyproject.toml
+src/securechat/__init__.py
+src/securechat.egg-info/PKG-INFO
+src/securechat.egg-info/SOURCES.txt
+src/securechat.egg-info/dependency_links.txt
+src/securechat.egg-info/requires.txt
+src/securechat.egg-info/top_level.txt
+src/securechat/client/__init__.py
+src/securechat/client/main.py
+src/securechat/core/__init__.py
+src/securechat/core/crypto.py
+src/securechat/core/protocol.py
+src/securechat/server/__init__.py
+src/securechat/server/main.py
+tests/test_crypto.py

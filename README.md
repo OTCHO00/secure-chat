@@ -1,7 +1,6 @@
 # SecureChat
 
 Messagerie chiffrée de bout en bout entre amis.
-Projet d'apprentissage, pas un remplaçant de Signal.
 
 ## Objectif de la v1 (terminé = ces 4 cases cochées)
 
