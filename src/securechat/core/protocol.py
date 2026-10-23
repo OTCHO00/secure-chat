@@ -1,40 +1,33 @@
-def max_twenty_c(pseudo: str) -> bool:
-    return len(pseudo) > 20
+def check_pseudo(pseudo: str) -> None:
 
-def bar_in_pseudo(pseudo: str) -> bool:
-    return "|" in pseudo
+    if len(pseudo) > 20:
+        raise ValueError("pseudo trop long")
+    if "|" in pseudo:
+        raise ValueError("| dans le pseudo")
+    if pseudo.strip() == "":
+        raise ValueError("pseudo vide")
 
-def is_empty(line: str):
-    return line.strip() == ""
+def check_text(text: str) -> None:
 
+    if len(text.strip()) == 0:
+        raise ValueError("texte vide")
+    
 def encode(pseudo: str, text: str) -> bytes:
 
-    if max_twenty_c(pseudo):
-        raise ValueError("pseudo trop long")        
-    if bar_in_pseudo(pseudo):
-        raise ValueError("| dans le pseudo")
-    if is_empty(pseudo):
-        raise ValueError("pseudo vide")
-    if is_empty(text):
-        raise ValueError("texte vide")
+    check_pseudo(pseudo)
+    check_text(text)
 
     ligne = f"{pseudo}|{text}\n"
     return ligne.encode('utf-8')
-        
-
+    
 def parse(line: bytes) -> tuple[str, str]:  
 
     p = line.strip().decode('utf-8').split("|", 1)
 
     if len(p) != 2:
         raise ValueError("pas de séparateur |")     
-    if max_twenty_c(p[0]):
-        raise ValueError("pseudo trop long") 
-    if bar_in_pseudo(p[0]):
-        raise ValueError("| dans le pseudo")
-    if is_empty(p[0]):
-        raise ValueError("pseudo vide")
-    if is_empty(p[1]):
-        raise ValueError("texte vide")
+    
+    check_text(p[1])
+    check_pseudo(p[0])
 
     return tuple(p)

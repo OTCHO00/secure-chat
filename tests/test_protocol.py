@@ -1,5 +1,33 @@
 import pytest
-from securechat.core.protocol import encode, parse
+from securechat.core.protocol import encode, parse, check_pseudo
+
+def test_check_pseudo_valide_normal():
+    # check_pseudo("fares") -> pas d’erreur
+    assert check_pseudo("fares") is None
+
+def test_check_pseudo_valide_longueur_max():
+    # check_pseudo("x" * 20) -> pas d’erreur
+    assert check_pseudo("x" * 20) is None
+
+def test_check_pseudo_invalide_trop_long():
+    # check_pseudo("x" * 21) -> ValueError
+    with pytest.raises(ValueError, match="pseudo trop long"):
+        check_pseudo("x" * 21)
+
+def test_check_pseudo_invalide_vide():
+    # check_pseudo("") -> ValueError
+    with pytest.raises(ValueError, match="pseudo vide"):
+        check_pseudo("")
+
+def test_check_pseudo_invalide_espaces():
+    # check_pseudo(" ") -> ValueError
+    with pytest.raises(ValueError, match="pseudo vide"):
+        check_pseudo(" ")
+
+def test_check_pseudo_invalide_separateur():
+    # check_pseudo("a|b") -> ValueError
+    with pytest.raises(ValueError, match="\| dans le pseudo"):
+        check_pseudo("a|b")
 
 # --- TESTS DES CAS VALIDES ---
 
